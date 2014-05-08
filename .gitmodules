@@ -1,0 +1,3 @@
+[submodule "SusyNtuple"]
+	path = SusyNtuple
+	url = git://github.com/gerbaudo/SusyNtuple.git
