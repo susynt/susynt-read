@@ -10,9 +10,9 @@ Prerequisites:
 Follow these commands to set up an area to read SusyNtuples.
 
 ```
-git clone --recursive git@github.com:gerbaudo/susynt-read.git
+git clone git@github.com:gerbaudo/susynt-read.git
 cd susynt-read
-git submodule update --init # only needed if you did not use '--recursive'
+git clone git@github.com:gerbaudo/SusyNtuple # get master for now
 SusyNtuple/scripts/installMinimalSUSYTools.sh 2>&1 | tee install.log
 
 ```
