@@ -4,7 +4,7 @@ susynt-read
 Example package to read SusyNt nutples
 
 Prerequisites:
-- root (`echo ${ROOTSYS}`)
+- root (`echo ${ROOTSYS}`, or `localSetupROOT 5.32.04-x86_64-slc5-gcc43-opt`)
 - svn access and kerberos ticket (`klist`)
 
 Follow these commands to set up an area to read SusyNtuples.
