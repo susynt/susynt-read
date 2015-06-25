@@ -2,32 +2,28 @@
 
 #
 # This script will checkout SusyNtuple as well as the necesssary
-# packages to run over SusyNt's for tag n0205
+# packages to run over SusyNt's for tag n0206
 #
 
 SVNOFF="svn+ssh://svn.cern.ch/reps/atlasoff/"
 SVNPHYS="svn+ssh://svn.cern.ch/reps/atlasphys/"
 
-# checkout the SusyNtuple that was used for n0205
-git clone git@github.com:susynt/SusyNtuple.git
-cd SusyNtuple
-git checkout SusyNtuple-00-02-03
-cd -
+# checkout the SusyNtuple that was used for n0206
+git clone -b mc15 git@github.com:susynt/SusyNtuple.git
 
 # Tags to checkout
-susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-05-00-29"
+susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-10"
 mt2URL="$SVNPHYS/Physics/SUSY/Analyses/WeakProduction/Mt2/tags/Mt2-00-00-01"
 trigURL="$SVNPHYS/Physics/SUSY/Analyses/WeakProduction/DGTriggerReweight/tags/DGTriggerReweight-00-00-29"
 jvfURL="$SVNOFF/Reconstruction/Jet/JetAnalysisTools/JVFUncertaintyTool/tags/JVFUncertaintyTool-00-00-04"
-evtShapeURL="$SVNOFF/Reconstruction/EventShapes/EventShapeTools/tags/EventShapeTools-00-01-09" # needed by SUSYTools
-
+metURL="$SVNOFF/Reconstruction/MET/METUtilities/tags/METUtilities-00-01-40"
 
 
 # Additional checkouts for 2-lepton
 svn co $mt2URL Mt2 || return || exit
 svn co $trigURL DGTriggerReweight || return || exit
 svn co $jvfURL JVFUncertaintyTool || return || exit
-svn co $evtShapeURL EventShapeTools || return || exit
+svn co $metURL METUtilities || return || exit
 
 # Checkout minimal SUSYTools
 mkdir -p SUSYTools/SUSYTools SUSYTools/Root SUSYTools/cmt SUSYTools/data
@@ -39,7 +35,7 @@ svn co $susyURL/data SUSYTools/data || return || exit
 
 # set up the AnalysisRelease for n0205
 setupATLAS
-rcSetup -u; rcSetup Base,2.1.28
+rcSetup -u; rcSetup Base,2.3.14
 rc find_packages
 rc compile
 
