@@ -5,7 +5,7 @@ Package to prepare a working area for reading SusyNtuples.
 
 #Prerequisites:
 - svn access and kerberos ticket (`klist`)
-- Run `kinit` beforehand if no kerberos ticket established
+- Run `kinit` beforehand if no kerberos ticket established (you will be asked for your CERN password during `setup_area` otherwise)
 - Access to cvmfs (for setting up an AnalysisRelease)
 
 #Follow these commands to set up an area to read SusyNtuples.
