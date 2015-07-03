@@ -11,11 +11,14 @@ Package to prepare a working area for reading SusyNtuples.
 #Follow these commands to set up an area to read SusyNtuples.
 
 ```
-git clone -b mc15 https://github.com/susynt/susynt-read.git
+git clone https://github.com/susynt/susynt-read.git
 cd susynt-read
+git checkout <tag>
 source bash/setup_area.sh
 source bash/setup_release.sh
 ```
+Where `<tag>` is your desired SusyNt tag that you want to read. The available tags are in the "releases" section
+at the top of this page or at [releases](https://github.com/susynt/susynt-read/releases).
 
 For a list of available SusyNt datasets for the recent production:
 ```
