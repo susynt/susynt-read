@@ -8,19 +8,37 @@
 # July 3 2015
 #
 
-release=Base,2.3.14
+rootVer=6.02.05-x86_64-slc6-gcc48-opt
 
 echo ""
-echo Setting up Analysis${release} and compiling packages.
-date
+echo Setting up ROOT ${rootVer}
+localSetupROOT ${rootVer} --skipConfirm
 
-setupATLAS
-rcSetup -u; rcSetup ${release}
+# if rootcore is already set up, clean up the env
+if [ -d ${ROOTCOREDIR} ];
+then
+    source ${ROOTCOREDIR}/scripts/unsetup.sh
+fi
+source RootCore/scripts/setup.sh
 rc find_packages
 rc clean
 rc compile
 
-echo ""
-echo "Finished."
-date
+
+
+#release=Base,2.3.14
+#
+#echo ""
+#echo Setting up Analysis${release} and compiling packages.
+#date
+#
+#setupATLAS
+#rcSetup -u; rcSetup ${release}
+#rc find_packages
+#rc clean
+#rc compile
+#
+#echo ""
+#echo "Finished."
+#date
 

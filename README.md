@@ -20,6 +20,9 @@ source bash/setup_release.sh
 Where `<tag>` is your desired SusyNt tag that you want to read. The available tags are in the "releases" section
 at the top of this page or at [releases](https://github.com/susynt/susynt-read/releases).
 
+- `setup_area` checkouts out SusyNtuple as well as the packages that it depends on
+- `setup_release` sets up the needed ROOT version as well as well as RootCore and compiles all of the packages
+
 For a list of available SusyNt datasets for the recent production:
 ```
 source bash/available_datasets.sh
