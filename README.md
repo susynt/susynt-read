@@ -1,27 +1,24 @@
 susynt-read
 ===========
 
-Example package to read SusyNt nutples
+Package to prepare a working area for reading SusyNtuples.
 
-Prerequisites:
-- root (`echo ${ROOTSYS}`, or `localSetupROOT 5.32.04-x86_64-slc5-gcc43-opt`)
+#Prerequisites:
 - svn access and kerberos ticket (`klist`)
+- Run `kinit` beforehand if no kerberos ticket established.
+- Access to cvmfs (for setting up an AnalysisRelease)
 
-Follow these commands to set up an area to read SusyNtuples.
+#Follow these commands to set up an area to read SusyNtuples.
 
 ```
-git clone git@github.com:gerbaudo/susynt-read.git
+git clone -b mc15 https://github.com/susynt/susynt-read.git
 cd susynt-read
-git clone git@github.com:gerbaudo/SusyNtuple # get master for now
-SusyNtuple/scripts/installMinimalSUSYTools.sh 2>&1 | tee install.log
-
+source bash/setup_area.sh
+source bash/setup_release.sh
 ```
 
-Todo
-----
-
-Add instructions showing how to:
-
-- pick up a specific tag (a tag of susynt-read will pull in a specific
-  tag of SusyNt; right now using master)
-- add an example with a minimal selection? (RootCore `rc make_skeleton MyPackage`)
+For a list of available SusyNt datasets for the recent production:
+```
+source bash/available_datasets.sh
+```
+This will produce two filelists using dq2: one for monte-carlo and one for data.
