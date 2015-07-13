@@ -8,18 +8,11 @@
 # environment!
 #
 
-rootver=6.02.05-x86_64-slc6-gcc48-opt
+rootver=6.02.10-x86_64-slc6-gcc48-opt
 
 echo ""
 echo "Setting up ROOT ${rootver}"
-localSetupROOT 6.02.05-x86_64-slc6-gcc48-opt --skipConfirm
-
-if [ -d ${ROOTCOREDIR} ];
-then
-    source ${ROOTCOREDIR}/scripts/unsetup.sh
-fi
-source RootCore/scripts/setup.sh
-rc find_packages
+localSetupROOT ${rootver}
 
 echo ""
 echo "Done."
