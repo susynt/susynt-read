@@ -28,3 +28,8 @@ For a list of available SusyNt datasets for the recent production:
 source bash/available_datasets.sh
 ```
 This will produce two filelists using dq2: one for monte-carlo and one for data.
+
+To setup the correct version of ROOT on subseqent entries to you working directory, call:
+```
+source bash/setup_root.sh
+```
