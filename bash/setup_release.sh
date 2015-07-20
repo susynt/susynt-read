@@ -8,7 +8,7 @@
 # July 3 2015
 #
 
-rootVer=6.02.10-x86_64-slc6-gcc48-opt
+rootVer=6.02.12-x86_64-slc6-gcc48-opt
 
 echo ""
 echo Setting up ROOT ${rootVer}

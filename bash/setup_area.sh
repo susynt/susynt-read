@@ -2,7 +2,8 @@
 
 #
 # This script will checkout SusyNtuple as well as the necessary 
-# packages/dependencies to run over SusyNt's tag n0206pup
+# packages/dependencies to run over the SusyNt tag requested by 
+# the user
 #
 # Note: This checks out packages from SVN, so you may be asked 
 # to provide your CERN password. Doing "kinit" before running
@@ -21,8 +22,8 @@ echo ""
 echo "Cloning SusyNtuple from https://github.com/susynt/SusyNtuple"
 git clone https://github.com/susynt/SusyNtuple.git
 cd SusyNtuple
-echo "Checking out the tag SusyNtuple-00-02-06"
-git checkout SusyNtuple-00-02-06
+echo "Checking out the tag SusyNtuple-00-02-07"
+git checkout SusyNtuple-00-02-07
 cd ..
 
 
@@ -30,7 +31,7 @@ cd ..
 rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-36"
 calURL="$SVNOFF/PhysicsAnalysis/JetTagging/JetTagPerformanceCalibration/CalibrationDataInterface/tags/CalibrationDataInterface-00-05-05"
 rewURL="$SVNOFF/PhysicsAnalysis/AnalysisCommon/ReweightUtils/tags/ReweightUtils-00-02-17"
-susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-15"
+susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-16"
 mt2URL="$SVNPHYS/Physics/SUSY/Analyses/WeakProduction/Mt2/tags/Mt2-00-00-01"
 trigURL="$SVNPHYS/Physics/SUSY/Analyses/WeakProduction/DGTriggerReweight/tags/DGTriggerReweight-00-00-29"
 jvfURL="$SVNOFF/Reconstruction/Jet/JetAnalysisTools/JVFUncertaintyTool/tags/JVFUncertaintyTool-00-00-04"
@@ -44,6 +45,7 @@ svn co $trigURL DGTriggerReweight || return || exit
 svn co $jvfURL JVFUncertaintyTool || return || exit
 
 # Only need minimal SUSYTools
+echo "Installing minimal SUSYTools"
 mkdir -p SUSYTools/SUSYTools SUSYTools/Root SUSYTools/cmt SUSYTools/data
 svn export $susyURL/SUSYTools/SUSYCrossSection.h SUSYTools/SUSYTools/SUSYCrossSection.h
 svn export $susyURL/Root/SUSYCrossSection.cxx SUSYTools/Root/SUSYCrossSection.cxx
