@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #
-# This script setups up the release for the area
-# to run over the SusyNt tag n0206pup.
+# This script setups up the release/root version for the area
+# to run over the requested SusyNt tag.
 #
 # daniel.joseph.antrim@cern.ch
 # July 3 2015
@@ -26,7 +26,7 @@ rc compile
 
 
 
-#release=Base,2.3.14
+#release=Base,2.3.21
 #
 #echo ""
 #echo Setting up Analysis${release} and compiling packages.
