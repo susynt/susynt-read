@@ -45,6 +45,7 @@ svn export $susyURL/cmt/Makefile.RootCore SUSYTools/cmt/Makefile.RootCore
 svn co $susyURL/data SUSYTools/data || return || exit
 
 # modify the SUSYTools dependencies
+sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = /" SUSYTools/cmt/Makefile.RootCore
 #sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = CalibrationDataInterface/" SUSYTools/cmt/Makefile.RootCore
 
 echo ""
