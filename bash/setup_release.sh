@@ -26,7 +26,7 @@ rc compile
 
 
 
-#release=Base,2.3.21
+#release=Base,2.3.23
 #
 #echo ""
 #echo Setting up Analysis${release} and compiling packages.
