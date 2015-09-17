@@ -22,8 +22,13 @@ echo ""
 echo "Cloning SusyNtuple from https://github.com/susynt/SusyNtuple"
 git clone https://github.com/susynt/SusyNtuple.git
 cd SusyNtuple
+<<<<<<< HEAD
+echo "Checking out the tag SusyNtuple-00-03-00"
+git checkout SusyNtuple-00-03-00
+=======
 echo "Checking out the tag SusyNtuple-00-02-10"
 git checkout SusyNtuple-00-02-10
+>>>>>>> master
 cd ..
 
 
@@ -45,6 +50,7 @@ svn export $susyURL/cmt/Makefile.RootCore SUSYTools/cmt/Makefile.RootCore
 svn co $susyURL/data SUSYTools/data || return || exit
 
 # modify the SUSYTools dependencies
+sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = /" SUSYTools/cmt/Makefile.RootCore
 #sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = CalibrationDataInterface/" SUSYTools/cmt/Makefile.RootCore
 
 echo ""
