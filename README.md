@@ -11,6 +11,7 @@ Package to prepare a working area for reading SusyNtuples.
 #Follow these commands to set up an area to read SusyNtuples.
 
 ```
+setupATLAS # only if you don't have localSetupROOT
 git clone https://github.com/susynt/susynt-read.git
 cd susynt-read
 git checkout <tag>
