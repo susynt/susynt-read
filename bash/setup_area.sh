@@ -22,8 +22,8 @@ echo ""
 echo "Cloning SusyNtuple from https://github.com/susynt/SusyNtuple"
 git clone https://github.com/susynt/SusyNtuple.git
 cd SusyNtuple
-echo "Checking out the tag SusyNtuple-00-03-00"
-git checkout SusyNtuple-00-03-00
+echo "Checking out the tag SusyNtuple-00-03-01"
+git checkout SusyNtuple-00-03-01
 cd ..
 
 
