@@ -30,11 +30,9 @@ cd ..
 # tags to checkout
 rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-37"
 susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-22"
-mt2URL="$SVNPHYS/Physics/SUSY/Analyses/WeakProduction/Mt2/tags/Mt2-00-00-01"
 
 echo "Checking out SusyNtuple dependencies"
 svn co $rootURL RootCore || return || exit
-svn co $mt2URL Mt2 || return || exit
 
 # Only need minimal SUSYTools
 echo "Installing minimal SUSYTools"
