@@ -40,6 +40,7 @@ def main() :
     if os.environ.get('STORAGEPREFIX') == None :
         print "STORAGEPREFIX environment variable is empty!"
         print "You must call 'localSetupFAX' before calling this script."
+        sys.exit()
 
     for container in input_containers :
         n_read += 1
