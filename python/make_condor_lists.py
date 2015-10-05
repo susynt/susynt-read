@@ -7,6 +7,10 @@
 # or otherwise as long as each line is a dataset
 # container that can be retrieved via 'dq2-ls')
 #
+# REQUIREMENTS BEFORE RUNNING:
+#    localSetupFAX
+#    grid proxy (voms-init-proxy -voms atlas)
+#
 # daniel.joseph.antrim@cern.ch
 # October 2015
 #######################################################
