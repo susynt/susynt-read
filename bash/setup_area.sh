@@ -13,7 +13,6 @@
 # July 3 2015
 #
 
-
 #-----------------------------------------------------------
 function print_usage() {
     echo "Usage:"
@@ -42,14 +41,14 @@ function setup_area() {
     if [ "${dev_or_stable}" = "stable" ]
     then
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-03-01"
-        git checkout SusyNtuple-00-03-01
+        echo "Checking out the tag SusyNtuple-00-03-02"
+        git checkout SusyNtuple-00-03-02
         cd ..
     fi
 
     # tags to checkout
-    rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-37"
-    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-22"
+    rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-38"
+    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-24-01"
 
     echo "Checking out SusyNtuple dependencies"
     svn co $rootURL RootCore || return || exit
