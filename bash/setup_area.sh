@@ -41,14 +41,14 @@ function setup_area() {
     if [ "${dev_or_stable}" = "stable" ]
     then
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-03-02"
-        git checkout SusyNtuple-00-03-02
+        echo "Checking out the tag SusyNtuple-00-04-01"
+        git checkout SusyNtuple-00-04-01
         cd ..
     fi
 
     # tags to checkout
     rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-38"
-    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-06-24-01"
+    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-07-17"
 
     echo "Checking out SusyNtuple dependencies"
     svn co $rootURL RootCore || return || exit
@@ -64,6 +64,9 @@ function setup_area() {
     # modify the SUSYTools dependencies
     sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = /" SUSYTools/cmt/Makefile.RootCore
     # sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = CalibrationDataInterface/" SUSYTools/cmt/Makefile.RootCore
+
+    # patch for 07-17: drop dependecy on PathResolver
+    patch -p0  < SUSYCrossSection.cxx.patch
 
     echo ""
     echo "Finished."
