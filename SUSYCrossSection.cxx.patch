@@ -1,0 +1,32 @@
+Index: SUSYTools/Root/SUSYCrossSection.cxx
+===================================================================
+--- SUSYTools/Root/SUSYCrossSection.cxx	(revision 715427)
++++ SUSYTools/Root/SUSYCrossSection.cxx	(working copy)
+@@ -1,5 +1,4 @@
+ #include "SUSYTools/SUSYCrossSection.h"
+-#include "PathResolver/PathResolver.h"
+ #include <dirent.h>
+ #include <math.h>
+ #include <iostream>
+@@ -9,17 +8,14 @@
+ SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir, bool extended) {
+     m_extended = extended;
+ 
+-    std::string fullPath = PathResolverFindCalibDirectory(txtfilenameOrDir);
+-
+-    DIR* dp = opendir(fullPath.c_str());
++    DIR* dp = opendir(txtfilenameOrDir.c_str());
+     if (dp) {
+         struct dirent * de;
+-        while ((de = readdir(dp)) != NULL) {       
+-            loadFile(fullPath + de->d_name);
++        while ((de = readdir(dp)) != NULL) {
++            loadFile(txtfilenameOrDir+"/"+de->d_name);
+         }
+     } else {
+-        std::string fullPathToFile = PathResolverFindCalibFile(txtfilenameOrDir);
+-        loadFile(fullPathToFile.c_str());
++        loadFile(txtfilenameOrDir.c_str());
+     }
+ }
+ 

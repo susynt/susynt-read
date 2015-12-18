@@ -65,6 +65,9 @@ function setup_area() {
     sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = /" SUSYTools/cmt/Makefile.RootCore
     # sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = CalibrationDataInterface/" SUSYTools/cmt/Makefile.RootCore
 
+    # patch for 07-17: drop dependecy on PathResolver
+    patch -p0  < SUSYCrossSection.cxx.patch
+
     echo ""
     echo "Finished."
     date
