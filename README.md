@@ -15,7 +15,7 @@ setupATLAS # only if you don't have localSetupROOT
 git clone https://github.com/susynt/susynt-read.git
 cd susynt-read
 git checkout <tag>
-source bash/setup_area.sh
+./bash/setup_area.sh [--dev] 2>&1 |tee setup_area.log
 source bash/setup_release.sh
 ```
 Where `<tag>` is your desired SusyNt tag that you want to read. The available tags are in the "releases" section

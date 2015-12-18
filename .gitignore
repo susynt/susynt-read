@@ -20,7 +20,12 @@
 *.out
 *.app
 
+RootCore/
+SUSYTools/
 Standalone/
+SusyNtuple/
 bin/
 obj/
+*.log
 *~
+
