@@ -41,7 +41,7 @@ function setup_area() {
     if [ "${dev_or_stable}" = "stable" ]
     then
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-04-01"
+        echo "Checking out the tag SusyNtuple-00-04-02"
         git checkout SusyNtuple-00-04-02
         cd ..
     fi
