@@ -59,9 +59,6 @@ def main() :
 
         mv_file_to_dir(out_text_filename, output, total_n, n_read)
 
-    if os.path.isfile("tmp.txt") :
-        cmd = "rm tmp.txt"
-        commands.getoutput(cmd)
 
     print "Done making lists for CONDOR"
     print " > files saved in directory : %s"%output
@@ -76,14 +73,24 @@ def get_containers(container_list = []) :
 
 def get_FAX_files(container_ = "") :
     out_files = []
-    cmd = "fax-get-gLFNs %s > tmp.txt"%container_ 
+    name = ""
+    if container_.endswith("/") :
+        name = container_[:-1]
+    else :
+        name = container_
+    cmd = "fax-get-gLFNs %s > tmp_%s.txt"%(container_, name)
     subprocess.call(cmd, shell=True)
 
-    files_ = open("tmp.txt").readlines()
+    files_ = open("tmp_%s.txt"%name).readlines()
     for file in files_ :
         if not file : continue
         file = file.strip()
         out_files.append(file)
+    
+    if os.path.isfile("tmp_%s.txt"%name) :
+        cmd = "rm tmp_%s.txt"%name
+        commands.getoutput(cmd)
+
     return out_files
 
 def get_out_filename(container_ = "") :
