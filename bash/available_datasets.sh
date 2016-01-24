@@ -8,7 +8,7 @@
 # July 3 2015
 #
 
-thisTag="n0220"
+thisTag="n0218b"
 mcOut="${thisTag}_mcSusyNt.txt"
 dataOut="${thisTag}_dataSusyNt.txt"
 
@@ -20,14 +20,14 @@ lsetup dq2
 
 echo "Looking for mc15"
 echo "_____________________________________________________________________________"
-echo "dq2-ls group.phys-susy:group.phys-susy.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/"
-dq2-ls group.phys-susy:group.phys-susy.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${mcOut}
+echo "dq2-ls user.dantrim:user.dantrim.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/"
+dq2-ls user.dantrim:user.dantrim.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${mcOut}
 
 echo ""
 echo "Looking for data15"
 echo "_____________________________________________________________________________"
-echo "dq2-ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/"
-dq2-ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${dataOut}
+echo "dq2-ls user.dantrim:user.dantrim.data15_13TeV.*.SusyNt.*${thisTag}*_nt/"
+dq2-ls user.dantrim:user.dantrim.data15_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${dataOut}
 
 echo ""
 echo "Finished."
