@@ -24,6 +24,8 @@ at the top of this page or at [releases](https://github.com/susynt/susynt-read/r
 - `setup_area` checkouts out SusyNtuple as well as the packages that it depends on
 - `setup_release` sets up the needed ROOT version as well as well as RootCore and compiles all of the packages
 
+To checkout the necessary packages used for the production nXXXX you <b>must</b> provide to the `setup_area` script the option `--stable` meaning that it will checkout the version of SusyNtuple, SUSYTools, etc... that were used at the time of producing the nXXXX susyNt.
+
 For a list of available SusyNt datasets for the recent production:
 ```
 source bash/available_datasets.sh
