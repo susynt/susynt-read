@@ -27,28 +27,51 @@ function setup_area() {
     local SVNOFF="svn+ssh://svn.cern.ch/reps/atlasoff/"
     local SVNPHYS="svn+ssh://svn.cern.ch/reps/atlasphys/"
     local GIT="https://github.com/" # read-only
-    if [ "${dev_or_stable}" = "dev" ]
-        then
-        GIT="git@github.com:" # read+write
-    fi
 
     echo "Setting up area for SusyNtuple"
     date
+
+    if [ "${dev_or_stable}" = "--dev" ]
+    then
+        GIT="git@github.com:" # read+write
+        echo "---------------------------------------------"
+        echo " You are checking out the development"
+        echo " (master) branch of SusyNtuple."
+        tput setaf 1
+        echo " If you mean to read SusyNt's from the n0222 "
+        echo " production, please call this script with"
+        echo " the '--stable' cmd line option."
+        tput sgr0
+        echo "---------------------------------------------"
+    else
+        echo "---------------------------------------------"
+        tput setaf 2
+        echo " You are checking out the tag of SusyNtuple  "
+        echo " for the n0222 production of SusyNt."
+        tput sgr0
+        echo "---------------------------------------------"
+    fi
+
     echo ""
     echo "Cloning SusyNtuple from ${GIT}susynt/SusyNtuple"
     git clone ${GIT}susynt/SusyNtuple.git
 
-    if [ "${dev_or_stable}" = "stable" ]
+    if [ "${dev_or_stable}" = "--dev" ]
     then
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-04-02"
-        git checkout SusyNtuple-00-04-02
+        echo "Checking out the master branch of SusyNtuple"
+        git checkout master
+        cd ..
+    else
+        cd SusyNtuple
+        echo "Checking out the tag SusyNtuple-00-05-01"
+        git checkout SusyNtuple-00-05-01
         cd ..
     fi
 
     # tags to checkout
-    rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-51"
-    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-07-23"
+    rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-57"
+    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-07-41"
 
     echo "Checking out SusyNtuple dependencies"
     svn co $rootURL RootCore || return || exit
@@ -76,14 +99,14 @@ function setup_area() {
 function main() {
     # parse as in
     # http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
-    local dev_or_stable="stable"
+    local dev_or_stable="--stable"
     local help=""
     while [[ $# > 0 ]]
     do
         key="$1"
         case $key in
             --dev)
-                dev_or_stable="dev"
+                dev_or_stable="--dev"
                 ;;
             -h|--help)
                 help=true

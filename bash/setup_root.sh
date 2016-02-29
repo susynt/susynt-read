@@ -8,11 +8,11 @@
 # environment!
 #
 
-rootver=6.02.12-x86_64-slc6-gcc48-opt
+rootver=6.04.12-x86_64-slc6-gcc49-opt
 
 echo ""
 echo "Setting up ROOT ${rootver}"
-localSetupROOT ${rootver} --skipConfirm
+lsetup "root ${rootver} --skipConfirm"
 
 echo ""
 echo "Done."
