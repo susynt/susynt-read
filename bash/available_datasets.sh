@@ -8,7 +8,7 @@
 # July 3 2015
 #
 
-thisTag="n0222"
+thisTag="n0223"
 mcOut="${thisTag}_mcSusyNt.txt"
 dataOut="${thisTag}_dataSusyNt.txt"
 
