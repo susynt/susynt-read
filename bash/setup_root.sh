@@ -8,7 +8,7 @@
 # environment!
 #
 
-rootver=6.04.12-x86_64-slc6-gcc49-opt
+rootver=6.04.16-x86_64-slc6-gcc49-opt
 
 echo ""
 echo "Setting up ROOT ${rootver}"
