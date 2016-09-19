@@ -23,21 +23,3 @@ rc find_packages
 rc clean
 rc compile
 
-
-
-#release=Base,2.3.23
-#
-#echo ""
-#echo Setting up Analysis${release} and compiling packages.
-#date
-#
-#setupATLAS
-#rcSetup -u; rcSetup ${release}
-#rc find_packages
-#rc clean
-#rc compile
-#
-#echo ""
-#echo "Finished."
-#date
-

@@ -38,7 +38,7 @@ function setup_area() {
         echo " You are checking out the development"
         echo " (master) branch of SusyNtuple."
         tput setaf 1
-        echo " If you mean to read SusyNt's from the n0226 "
+        echo " If you mean to read SusyNt's from the n0228 "
         echo " production, please call this script with"
         echo " the '--stable' cmd line option."
         tput sgr0
@@ -47,7 +47,7 @@ function setup_area() {
         echo "---------------------------------------------"
         tput setaf 2
         echo " You are checking out the tag of SusyNtuple  "
-        echo " for the n0226 production of SusyNt."
+        echo " for the n0228 production of SusyNt."
         tput sgr0
         echo "---------------------------------------------"
     fi
@@ -64,14 +64,14 @@ function setup_area() {
         cd ..
     else
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-05-05"
-        git checkout SusyNtuple-00-05-05
+        echo "Checking out the tag SusyNtuple-00-05-06"
+        git checkout SusyNtuple-00-05-06
         cd ..
     fi
 
     # tags to checkout
     rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-62"
-    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-07-90"
+    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-07-96-02"
 
     echo "Checking out SusyNtuple dependencies"
     svn co $rootURL RootCore || return || exit
@@ -90,7 +90,7 @@ function setup_area() {
     # sed -i "s/^PACKAGE_DEP.*/PACKAGE_DEP = CalibrationDataInterface/" SUSYTools/cmt/Makefile.RootCore
 
     # patch for 07-82: drop dependecy on PathResolver
-    patch -p0 < SUSYCrossSection.patch
+    #patch -p0 < SUSYCrossSection.patch
 
     echo ""
     echo "Finished."
