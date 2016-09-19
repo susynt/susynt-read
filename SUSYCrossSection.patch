@@ -2,7 +2,13 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
 ===================================================================
 --- SUSYTools/Root/SUSYCrossSection.cxx	(revision 773821)
 +++ SUSYTools/Root/SUSYCrossSection.cxx	(working copy)
-@@ -7,25 +7,6 @@
+@@ -1,5 +1,4 @@
+ #include "SUSYTools/SUSYCrossSection.h"
+-#include "PathResolver/PathResolver.h"
+ #include <dirent.h>
+ #include <math.h>
+ #include <iostream>
+@@ -7,25 +6,6 @@
  using namespace std;
  
  SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir, bool usePathResolver, bool isExtended) {
@@ -28,7 +34,7 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
      DIR* dp = opendir(txtfilenameOrDir.c_str());
      if (dp) {
        struct dirent * de;
-@@ -35,7 +16,6 @@
+@@ -35,7 +15,6 @@
      } else {
        loadFile(txtfilenameOrDir.c_str());
      }
