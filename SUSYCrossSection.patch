@@ -1,17 +1,17 @@
 Index: SUSYTools/Root/SUSYCrossSection.cxx
 ===================================================================
---- SUSYTools/Root/SUSYCrossSection.cxx	(revision 773821)
+--- SUSYTools/Root/SUSYCrossSection.cxx	(revision 792464)
 +++ SUSYTools/Root/SUSYCrossSection.cxx	(working copy)
-@@ -1,5 +1,4 @@
+@@ -1,31 +1,11 @@
  #include "SUSYTools/SUSYCrossSection.h"
 -#include "PathResolver/PathResolver.h"
  #include <dirent.h>
  #include <math.h>
  #include <iostream>
-@@ -7,25 +6,6 @@
+ 
  using namespace std;
  
- SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir, bool usePathResolver, bool isExtended) {
+-SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir, bool usePathResolver, bool isExtended) {
 -  
 -  setExtended(isExtended);
 -  
@@ -31,6 +31,7 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
 -    }
 -  }
 -  else {
++SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir) {
      DIR* dp = opendir(txtfilenameOrDir.c_str());
      if (dp) {
        struct dirent * de;
@@ -42,3 +43,16 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
  }
  
  void SUSY::CrossSectionDB::loadFile(const std::string& txtfilename){
+Index: SUSYTools/SUSYTools/SUSYCrossSection.h
+===================================================================
+--- SUSYTools/SUSYTools/SUSYCrossSection.h	(revision 792464)
++++ SUSYTools/SUSYTools/SUSYCrossSection.h	(working copy)
+@@ -19,7 +19,7 @@
+ class CrossSectionDB
+ {
+ public:
+-  CrossSectionDB(const std::string& txtfilenameOrDir = "SUSYTools/data/mc15_13TeV/", bool usePathResolver = false, bool isExtended = false);
++  CrossSectionDB(const std::string& txtfilenameOrDir = "SUSYTools/data/mc15_13TeV/");
+ 
+   void loadFile(const std::string&);
+ 
