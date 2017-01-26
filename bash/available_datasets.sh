@@ -14,27 +14,27 @@ data15Out="${thisTag}_data15SusyNt.txt"
 data16Out="${thisTag}_data16SusyNt.txt"
 
 echo ""
-echo "Setting up DQ2"
-echo "lsetup dq2"
+echo "Setting up Rucio"
+echo "lsetup rucio"
 date
-lsetup dq2
+lsetup rucio
 
 echo "Looking for mc15"
 echo "_____________________________________________________________________________"
-echo "dq2-ls group.phys-susy:group.phys-susy.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/"
-dq2-ls group.phys-susy:group.phys-susy.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${mcOut}
+echo "rucio ls group.phys-susy:group.phys-susy.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/"
+rucio ls group.phys-susy:group.phys-susy.mc15_13TeV.*.SusyNt.*${thisTag}*_nt/ |grep CONTAINER |sed 's/|//g' |sed 's/CONTAINER//g' |sed 's/nt/nt\//g' |sed 's/ //g' 2>&1 |sort |tee ${mcOut} 
 
 echo ""
 echo "Looking for data15"
 echo "_____________________________________________________________________________"
-echo "dq2-ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/"
-dq2-ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${data15Out}
+echo "rucio ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/" 
+rucio ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/  |grep CONTAINER |sed 's/|//g' |sed 's/CONTAINER//g' |sed 's/nt/nt\//g' |sed 's/ //g' 2>&1 |sort |tee ${data15Out} 
 
 echo ""
 echo "Looking for data16"
 echo "_____________________________________________________________________________"
-echo "dq2-ls group.phys-susy:group.phys-susy.data15_13TeV.*.SusyNt.*${thisTag}*_nt/"
-dq2-ls group.phys-susy:group.phys-susy.data16_13TeV.*.SusyNt.*${thisTag}*_nt/ 2>&1 |sort |tee ${data16Out}
+echo "rucio ls group.phys-susy:group.phys-susy.data16_13TeV.*.SusyNt.*${thisTag}*_nt/" 
+rucio ls group.phys-susy:group.phys-susy.data16_13TeV.*.SusyNt.*${thisTag}*_nt/ |grep CONTAINER |sed 's/|//g' |sed 's/CONTAINER//g' |sed 's/nt/nt\//g' |sed 's/ //g' 2>&1 |sort |tee ${data16Out} 
 
 
 echo ""
