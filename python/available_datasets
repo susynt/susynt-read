@@ -1,0 +1,207 @@
+#!/bin/env python
+
+######################################################
+#
+# makes lists of well-behaving susyNt files in a
+# given tag of susyNt
+#
+# requirements:
+#   cvmfs: work somewhere with cvmfs/
+#   rucio: "lsetup rucio"
+#   grid proxy: "voms-proxy-init"
+#
+# daniel.joseph.antrim@cern.ch
+# March 1 2017
+#
+#####################################################
+
+# tag that will be looked for
+TAG="n0232"
+# give priority (by default) to samples furhter down the alphabet
+ALPHA=["","b","c","d","e","f", "g"]
+
+# override priority selection of samples further down the alphabet
+PICKY={}
+
+PICKYDATA = {}
+PICKYDATA["302300"] = "c" # for run 302300 choose tag n0232c
+
+PICKYMC = {}
+
+PICKY["data"] = PICKYDATA
+PICKY["mc"] = PICKYMC
+
+import os # path
+import sys # exit
+import subprocess # for shell commands
+
+
+def rucio_is_setup() :
+    print "Checking that rucio is setup"
+    default = ""
+    rucio_home = os.getenv('RUCIO_HOME', default)
+    if rucio_home == default :
+        print "ERROR rucio is not setup, please set it up before running this script"
+        return False
+    else :
+        print " > rucio found: %s"%rucio_home
+        return True
+
+def proxy_setup() :
+    print "Checking for valid proxy"
+    default = ""
+    proxy = os.getenv('X509_USER_PROXY', default)
+    if proxy == default :
+        print "ERROR proxy is not setup, please set one up before running this script"
+        return False
+    else :
+        print " > proxy found: %s"%proxy
+        return True
+
+def good_line(line, look_for_this) :
+    # we only like good lines
+
+    if not line :
+        return False
+    if line.startswith("#") :
+        return False
+    if look_for_this in line :
+        return True
+
+def get_id(container, scope) :
+    did = container.split(scope)[1].split(".")[1]
+    if "data" in scope :
+        # remove preceding '00'
+        did = did[2:]
+    return did
+
+def is_picky(tag_to_check, picky_dict, did) :
+
+    # override
+    for did_check, tag_override in picky_dict.iteritems() :
+        did_check = int(did_check)
+        if did_check == did :
+            return "%s%s"%(TAG, picky_dict[str(did_check)])
+    return tag_to_check
+
+def sort_containers(containers, scope) :
+
+    all_list = []
+    for c in containers :
+        all_list.append(int(get_id(c, scope)))
+    all_list.sort()
+
+    out = []
+    for l in all_list :
+        for c in containers :
+            if str(l) in c :
+                out.append(c)
+    return out 
+
+def get_appropriate_containers(file_to_check, scope) :
+
+    # expecting rucio formatted output:
+    #   | group.phys-susy:group.phys-susy.data16_13TeV.00298595.physics_Main.SusyNt.f698_m1594_p2880_n0232_nt  | CONTAINER    |
+
+    picky_dict = {}
+    if "data" in scope :
+        picky_dict = PICKY["data"]
+    elif "mc" in scope :
+        picky_dict = PICKY["mc"]
+
+    # index all containers that we have by their unique identifier
+    all_containers = {}
+    lines = open(file_to_check).readlines()
+    for line in lines :
+        if not good_line(line, scope) : continue
+        line = line.strip()
+        container = line.split("|")[1].strip()
+        identifier = get_id(container, scope)
+        all_containers[int(identifier)] = [] 
+
+    # this is not pretty but who's looking
+    lines = open(file_to_check).readlines()
+    for line in lines :
+        if not good_line(line, scope) : continue
+        line = line.strip()
+        container = line.split("|")[1].strip()
+        identifier = get_id(container, scope)
+        all_containers[int(identifier)].append(container) 
+
+    # get the appropriate tags
+    tags_to_check = [alpha for alpha in reversed(ALPHA)]
+
+    containers = []
+    for did, container_list in all_containers.iteritems() :
+        got_it = False
+        for alpha in tags_to_check :
+            check_tag = "%s%s"%(TAG,alpha)
+            check_tag = is_picky(check_tag, picky_dict, did)
+            for container in container_list :
+                if check_tag in container :
+                    containers.append(container)
+                    got_it = True
+                    break
+            if got_it : break
+
+    containers = sort_containers(containers, scope)
+    return containers
+
+def get_datasets(scope) :
+
+    # first dump all files for this scope and tag into a file for later parsing
+    tmp_file_dump = "tmp_%s_for%s.txt"%(scope, TAG)
+    rucio_cmd = "rucio ls group.phys-susy:group.phys-susy.%s.*.SusyNt.*%s*_nt/"%(scope, TAG)
+    shell_cmd = "%s > %s"%(rucio_cmd, tmp_file_dump)
+    subprocess.call(shell_cmd, shell=True)
+
+    # later parsing
+    containers_we_care_about = get_appropriate_containers(tmp_file_dump, scope)
+
+    # now put the ones we care about into a file
+    tag_for = scope.replace("_13TeV","")
+    tag_for = scope.replace("_13TeV","") # pre-emptive strike
+    out_filename = "%s_%sSusyNt.txt"%(TAG, tag_for)
+    ofile = open(out_filename, 'w')
+    for c in containers_we_care_about :
+        list_line = "%s/\n"%c
+        ofile.write(list_line)
+    ofile.close
+
+    # clean up
+    rm_cmd = "rm %s"%tmp_file_dump
+    subprocess.call(rm_cmd, shell=True)
+
+    return out_filename, len(containers_we_care_about)
+        
+def main() :
+    print 55*"*"
+    print "Looking for available datasets in susyNt tag %s"%TAG
+    print 55*"*"
+
+    if not rucio_is_setup() :
+        sys.exit(1)
+
+    if not proxy_setup() :
+        sys.exit(1)
+
+    containers_to_look_for = ["mc15_13TeV","data15_13TeV","data16_13TeV"]
+
+    files_written = []
+    dataset_count = []
+    print 55*"-"
+    for container in containers_to_look_for :
+        print " * %s * "%container
+        file_made, n_datasets = get_datasets(container)
+        files_written.append(file_made)
+        dataset_count.append(n_datasets)
+
+    print 55*"*"
+    print "Filelists written for %s SusyNt:"%TAG
+    for ifile, f in enumerate(files_written) :
+        print " %d) %s : %d datasets"%(ifile, f, dataset_count[ifile])
+    print 55*"*"
+
+#___________________________________________________
+if __name__ == "__main__" :
+    main()
