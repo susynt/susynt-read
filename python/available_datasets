@@ -162,7 +162,7 @@ def get_datasets(scope) :
 
     # now put the ones we care about into a file
     tag_for = scope.replace("_13TeV","")
-    tag_for = scope.replace("_13TeV","") # pre-emptive strike
+    tag_for = scope.replace("_14TeV","") # pre-emptive strike
     out_filename = "%s_%sSusyNt.txt"%(TAG, tag_for)
     ofile = open(out_filename, 'w')
     for c in containers_we_care_about :
