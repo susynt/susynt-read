@@ -67,6 +67,8 @@ def good_line(line, look_for_this) :
         return False
     if look_for_this in line :
         return True
+    else :
+        return False
 
 def get_id(container, scope) :
     did = container.split(scope)[1].split(".")[1]
