@@ -38,7 +38,7 @@ function setup_area() {
         echo " You are checking out the development"
         echo " (master) branch of SusyNtuple."
         tput setaf 1
-        echo " If you mean to read SusyNt's from the n0231 "
+        echo " If you mean to read SusyNt's from the n0232 "
         echo " production, please call this script with"
         echo " the '--stable' cmd line option."
         tput sgr0
@@ -47,7 +47,7 @@ function setup_area() {
         echo "---------------------------------------------"
         tput setaf 2
         echo " You are checking out the tag of SusyNtuple  "
-        echo " for the n0231 production of SusyNt."
+        echo " for the n0232 production of SusyNt."
         tput sgr0
         echo "---------------------------------------------"
     fi
@@ -64,14 +64,14 @@ function setup_area() {
         cd ..
     else
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-05-07"
-        git checkout SusyNtuple-00-05-07
+        echo "Checking out the tag SusyNtuple-00-05-08"
+        git checkout SusyNtuple-00-05-08
         cd ..
     fi
 
     # tags to checkout
     rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-62"
-    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-08-35"
+    susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-08-54"
 
     echo "Checking out SusyNtuple dependencies"
     svn co $rootURL RootCore || return || exit

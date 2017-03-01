@@ -1,8 +1,8 @@
 Index: SUSYTools/Root/SUSYCrossSection.cxx
 ===================================================================
---- SUSYTools/Root/SUSYCrossSection.cxx	(revision 792464)
+--- SUSYTools/Root/SUSYCrossSection.cxx	(revision 799046)
 +++ SUSYTools/Root/SUSYCrossSection.cxx	(working copy)
-@@ -1,31 +1,11 @@
+@@ -1,31 +1,12 @@
  #include "SUSYTools/SUSYCrossSection.h"
 -#include "PathResolver/PathResolver.h"
  #include <dirent.h>
@@ -12,7 +12,8 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
  using namespace std;
  
 -SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir, bool usePathResolver, bool isExtended) {
--  
++SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir) {
+   
 -  setExtended(isExtended);
 -  
 -  if (usePathResolver) {
@@ -22,7 +23,7 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
 -    if (dp) {
 -      struct dirent * de;
 -      while ((de = readdir(dp)) != NULL) {
--	loadFile(fullPath + de->d_name);
+-        loadFile(fullPath + de->d_name);
 -      }
 -    }
 -    else {
@@ -31,11 +32,10 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
 -    }
 -  }
 -  else {
-+SUSY::CrossSectionDB::CrossSectionDB(const std::string& txtfilenameOrDir) {
      DIR* dp = opendir(txtfilenameOrDir.c_str());
      if (dp) {
        struct dirent * de;
-@@ -35,7 +15,6 @@
+@@ -35,7 +16,6 @@
      } else {
        loadFile(txtfilenameOrDir.c_str());
      }
@@ -45,7 +45,7 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
  void SUSY::CrossSectionDB::loadFile(const std::string& txtfilename){
 Index: SUSYTools/SUSYTools/SUSYCrossSection.h
 ===================================================================
---- SUSYTools/SUSYTools/SUSYCrossSection.h	(revision 792464)
+--- SUSYTools/SUSYTools/SUSYCrossSection.h	(revision 799046)
 +++ SUSYTools/SUSYTools/SUSYCrossSection.h	(working copy)
 @@ -19,7 +19,7 @@
  class CrossSectionDB
@@ -54,5 +54,5 @@ Index: SUSYTools/SUSYTools/SUSYCrossSection.h
 -  CrossSectionDB(const std::string& txtfilenameOrDir = "SUSYTools/data/mc15_13TeV/", bool usePathResolver = false, bool isExtended = false);
 +  CrossSectionDB(const std::string& txtfilenameOrDir = "SUSYTools/data/mc15_13TeV/");
  
+   // Load all the information from a file
    void loadFile(const std::string&);
- 
