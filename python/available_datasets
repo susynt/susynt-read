@@ -161,8 +161,15 @@ def get_datasets(scope) :
     containers_we_care_about = get_appropriate_containers(tmp_file_dump, scope)
 
     # now put the ones we care about into a file
-    tag_for = scope.replace("_13TeV","")
-    tag_for = scope.replace("_14TeV","") # pre-emptive strike
+    tag_for = ""
+    if "data15" in scope :
+        tag_for = "data15"
+    elif "data16" in scope :
+        tag_for = "data16"
+    elif "mc15" in scope :
+        tag_for = "mc15"
+    #tag_for = scope.replace("_13TeV","")
+    #tag_for = scope.replace("_14TeV","") # pre-emptive strike
     out_filename = "%s_%sSusyNt.txt"%(TAG, tag_for)
     ofile = open(out_filename, 'w')
     for c in containers_we_care_about :
