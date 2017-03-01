@@ -76,7 +76,7 @@ def get_containers(container_list = []) :
 
 def get_FAX_files(container_ = "") :
     out_files = []
-    cmd = "fax-get-gLFNs %s > tmp_%s.txt"%(container_, container_[:-2] 
+    cmd = "fax-get-gLFNs %s > tmp_%s.txt"%(container_, container_[:-2]) 
     subprocess.call(cmd, shell=True)
 
     files_ = open("tmp_%s.txt"%container_[:-2]).readlines()
