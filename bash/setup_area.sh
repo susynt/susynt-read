@@ -64,8 +64,8 @@ function setup_area() {
         cd ..
     else
         cd SusyNtuple
-        echo "Checking out the tag SusyNtuple-00-05-08"
-        git checkout SusyNtuple-00-05-08
+        echo "Checking out the tag SusyNtuple-00-05-09"
+        git checkout SusyNtuple-00-05-09
         cd ..
     fi
 
