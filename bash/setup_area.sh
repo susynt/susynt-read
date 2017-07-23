@@ -38,7 +38,7 @@ function setup_area() {
         echo " You are checking out the development"
         echo " (master) branch of SusyNtuple."
         tput setaf 1
-        echo " If you mean to read SusyNt's from the n0234 "
+        echo " If you mean to read SusyNt's from the n0235 "
         echo " production, please call this script with"
         echo " the '--stable' cmd line option."
         tput sgr0
@@ -47,7 +47,7 @@ function setup_area() {
         echo "---------------------------------------------"
         tput setaf 2
         echo " You are checking out the tag of SusyNtuple  "
-        echo " for the n0234 production of SusyNt."
+        echo " for the n0235 production of SusyNt."
         tput sgr0
         echo "---------------------------------------------"
     fi
