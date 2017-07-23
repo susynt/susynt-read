@@ -1,6 +1,6 @@
 Index: SUSYTools/Root/SUSYCrossSection.cxx
 ===================================================================
---- SUSYTools/Root/SUSYCrossSection.cxx	(revision 799046)
+--- SUSYTools/Root/SUSYCrossSection.cxx	(revision 808522)
 +++ SUSYTools/Root/SUSYCrossSection.cxx	(working copy)
 @@ -1,31 +1,12 @@
  #include "SUSYTools/SUSYCrossSection.h"
@@ -35,17 +35,18 @@ Index: SUSYTools/Root/SUSYCrossSection.cxx
      DIR* dp = opendir(txtfilenameOrDir.c_str());
      if (dp) {
        struct dirent * de;
-@@ -35,7 +16,6 @@
+@@ -35,7 +16,7 @@
      } else {
        loadFile(txtfilenameOrDir.c_str());
      }
 -  }
++
  }
  
  void SUSY::CrossSectionDB::loadFile(const std::string& txtfilename){
 Index: SUSYTools/SUSYTools/SUSYCrossSection.h
 ===================================================================
---- SUSYTools/SUSYTools/SUSYCrossSection.h	(revision 799046)
+--- SUSYTools/SUSYTools/SUSYCrossSection.h	(revision 808522)
 +++ SUSYTools/SUSYTools/SUSYCrossSection.h	(working copy)
 @@ -19,7 +19,7 @@
  class CrossSectionDB
