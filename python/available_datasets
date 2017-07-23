@@ -166,7 +166,7 @@ def get_datasets(scope) :
     elif "data16" in scope :
         tag_for = "data16"
     elif "data17" in scope :
-        tag_for = "data17" :
+        tag_for = "data17"
     elif "mc15" in scope :
         tag_for = "mc15"
     #tag_for = scope.replace("_13TeV","")
@@ -195,7 +195,7 @@ def main() :
     if not proxy_setup() :
         sys.exit(1)
 
-    containers_to_look_for = ["mc15_13TeV","data15_13TeV","data16_13TeV","data17_13TeV"]
+    containers_to_look_for = ["mc15_13TeV","data15_13TeV","data16_13TeV"]#,"data17_13TeV"]
 
     files_written = []
     dataset_count = []
