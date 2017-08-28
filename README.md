@@ -59,7 +59,7 @@ If you are returning to your *susynt-read/* directory from a new shell and you h
 source bash/setup_release.sh
 ```
 
-This sources the *setup.sh* script located in *susynt-read/build/x86_64-\8/* directory.
+This sources the *setup.sh* script located in *susynt-read/build/x86_64-\*/* directory.
 
 ### Subsequent Compilation
 
