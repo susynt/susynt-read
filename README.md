@@ -9,7 +9,7 @@ susynt-read
   * [Subsequent Area Setup](#subsequent-area-setup)
   * [Subsequent Compilation](#subsequent-compilation)
   * [Compiling After Changes to CMakeLists](#compiling-after-changes-to-cmakelists)
- * [Useful Scripts](#useful-scripts)
+* [Useful Scripts](#useful-scripts)
   * [Listing Available Datasets](#listing-available-datasets)
   * [Making Condor Filelists](#making-condor-filelists)
 
