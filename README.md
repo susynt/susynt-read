@@ -66,13 +66,15 @@ You can either call:
 ```
 source bash/setup_release.sh --compile
 ```
+
 every time you wish to compile. But this runs the *cmake* command to initiate the ```CMake``` configuration steps. This also removes the previous *build/* directory and starts a new one.
 
 The simpler and faster way (and therefore recommended way) is to move to the *build/* directory and simply call ```make```:
 
 ```
 cd build/
-make```
+make
+```
 
 ### Compiling After Changes to CMakeLists
 
@@ -81,6 +83,7 @@ If you change any of the ```CMakeLists.txt``` files in any of the packages in *s
 ```
 source bash/setup_release.sh --compile
 ```
+
 or, if you do not want to completely remove the previous *build/* directory (and are sure that your changes are OK for this) you can simply do:
 
 ```
