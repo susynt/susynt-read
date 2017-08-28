@@ -33,7 +33,7 @@ source bash/setup_area.sh --stable
 source bash/setup_release.sh --compile
 ```
 
-The script *bash/setup_area.sh* call in the above snippet will checkout the "stable" release given by the tag ```<tag>```. This means that it will checkout the associated tags of **SusyNtuple** and **SUSYTools** (i.e. those tags of these two packages that were used to build susyNt tag ```<tag>```). You can use the ```-h``` or ```--help``` option to see the full list of options:
+The script *bash/setup_area.sh* call in the above snippet will checkout the "stable" release given by the tag ```<tag>```. All of the tags are listed in the **releases** section [here](https://github.com/susynt/susynt-read/releases). This means that it will checkout the associated tags of **SusyNtuple** and **SUSYTools** (i.e. those tags of these two packages that were used to build susyNt tag ```<tag>```). You can use the ```-h``` or ```--help``` option to see the full list of options:
 
 ```
 source bash/setup_area.sh --help
