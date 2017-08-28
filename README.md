@@ -93,4 +93,17 @@ make
 ```
 
 ## Useful Scripts
-blah
+
+### Listing Available Datasets
+There is the ```python``` script *python/available_datasets* which will provide you with text files for all of the **mc** and **data** susyNt samples for the given production tag. Run it as follows:
+
+```
+./python/available_datasets
+```
+
+or
+
+```
+python python/available_datasets
+```
+
