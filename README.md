@@ -116,5 +116,5 @@ You can use the text files produced by the *python/available_datasets* script to
 python python/make_condor_lists.py -i <text-file> -o <filelist-directory>
 ```
 
-where ```<text-file>``` is one of the text files (or a text file with a listing of the susyNt samples, e.g. from ```rucio ls```) and ```<filelist-directory>``` is a directory where the *python/make_condor_lists.py* script will place all of the output. The output of this script are text files which represent filelists where each file in a dataset is the **global logical filename** used by condor.
+where ```<text-file>``` is one of the text files produced by the *python/available_datasets* script (or a text file with a listing of the susyNt samples, e.g. from ```rucio ls```) and ```<filelist-directory>``` is a directory where the *python/make_condor_lists.py* script will place all of the output. The output of this script are text files which represent filelists where each file in a dataset is the **global logical filename** used by condor.
 
