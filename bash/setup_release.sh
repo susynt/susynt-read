@@ -19,7 +19,7 @@ then
     source ${ROOTCOREDIR}/scripts/unsetup.sh
 fi
 source RootCore/scripts/setup.sh
-rc find_packages
-rc clean
-rc compile
+#rc find_packages
+#rc clean
+#rc compile
 
