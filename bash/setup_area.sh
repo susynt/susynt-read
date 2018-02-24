@@ -26,7 +26,7 @@ function setup_area() {
     local dev_or_stable="$1"
     local SVNOFF="svn+ssh://svn.cern.ch/reps/atlasoff/"
     local SVNPHYS="svn+ssh://svn.cern.ch/reps/atlasphys/"
-    local GIT="https://github.com/" # read-only
+    local GIT="git@github.com:" # read-write
 
     echo "Setting up area for SusyNtuple"
     date
