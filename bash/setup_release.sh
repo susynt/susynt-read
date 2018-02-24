@@ -14,9 +14,10 @@ echo "Setting up ROOT ${rootver}"
 lsetup "root ${rootver} --skipConfirm"
 
 # if rootcore is already set up, clean up the env
-if [ -d "${ROOTCOREDIR}" ];
-then
+if [ -d "${ROOTCOREDIR}" ]; then
     source ${ROOTCOREDIR}/scripts/unsetup.sh
+elif [ -z "${ROOTCOREDIR}" ] && [ -d "RootCore/scripts" ]; then 
+    source RootCore/scripts/unsetup.sh
 fi
 source RootCore/scripts/setup.sh
 #rc find_packages
