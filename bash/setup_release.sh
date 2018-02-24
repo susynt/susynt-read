@@ -14,7 +14,7 @@ echo "Setting up ROOT ${rootver}"
 lsetup "root ${rootver} --skipConfirm"
 
 # if rootcore is already set up, clean up the env
-if [ -d ${ROOTCOREDIR} ];
+if [ -d "${ROOTCOREDIR}" ];
 then
     source ${ROOTCOREDIR}/scripts/unsetup.sh
 fi
@@ -23,3 +23,4 @@ source RootCore/scripts/setup.sh
 #rc clean
 #rc compile
 
+echo -e "\n---------- Environment is setup ----------\n"

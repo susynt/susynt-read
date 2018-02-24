@@ -76,6 +76,12 @@ def get_containers(container_list = []) :
 
 def get_FAX_files(container_ = "") :
     out_files = []
+    # Check if container contains 0 Bytes
+    out = subprocess.check_output(['rucio', 'list-files', container_])
+    if "Total files : 0" in out:
+        print "No files in", container_
+        return out_files
+
     cmd = "fax-get-gLFNs %s > tmp_%s.txt"%(container_, container_[:-2]) 
     subprocess.call(cmd, shell=True)
 
