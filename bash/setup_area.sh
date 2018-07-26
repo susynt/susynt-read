@@ -70,11 +70,9 @@ function setup_area() {
     fi
 
     # tags to checkout
-    rootURL="$SVNOFF/PhysicsAnalysis/D3PDTools/RootCore/tags/RootCore-00-04-62"
     susyURL="$SVNOFF/PhysicsAnalysis/SUSYPhys/SUSYTools/tags/SUSYTools-00-08-64"
 
     echo "Checking out SusyNtuple dependencies"
-    svn co $rootURL RootCore || return || exit
 
     # Only need minimal SUSYTools
     echo "Installing minimal SUSYTools"
